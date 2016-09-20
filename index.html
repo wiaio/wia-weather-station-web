@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Wia Weather Station</title>
+  <link rel="shortcut icon" href="https://cdn.wia.io/images/favicons/favicon.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- <script src="https://cdn.wia.io/sdk/js/v1/wia.min.js"></script> -->
+  <script src="wia-javascript-sdk-0.2.3.min.js"></script>
+  <script>
+      Wia.initialize({
+        appKey: "your application key"
+      });
+
+      Wia.stream.connect({
+        onSuccess: function() {
+          Wia.sensors.subscribe(
+            { device: "your device key"},
+            function(sensor) {
+              if (sensor){
+                document.getElementById("timestamp").innerHTML = Date(sensor.timestamp);
+                if(sensor.name=="temperature"){
+                  document.getElementById("temperature").innerHTML = sensor.data;
+                }
+                else if(sensor.name=="humidity"){
+                  document.getElementById("humidity").innerHTML = sensor.data;
+                }
+                else if(sensor.name=="pressure"){
+                  document.getElementById("pressure").innerHTML = sensor.data;
+                }
+                else {
+                  console.log(sensor.name);
+                }
+              }
+            }
+          );
+        }
+      });
+
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="panel panel-info">
+        <div class="panel-heading"><h1>What's the weather like in your city?</h1></div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+              <div class="row">
+                <div class="col-sm-7">
+                  <h2>Your City</h2>
+                  <h5 id="timestamp"></h5>
+                  <h1>
+                    </span><span id="temperature"></span><span class="smalltext">°C</span>
+                  </h1>
+                </div>
+                <div class="col-sm-5 secondary-weather-links">
+                  <h3>Humidity:&nbsp;<span class="value" id="humidity"></span>&nbsp;%</h3>
+                  <h3>Pressure:&nbsp;<span class="value" id="pressure"></span>&nbsp;mbar</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <p style="text-align:center;"> powered by </br><img src="http://docs.wia.io/images/logo.svg" style="height:25px; margin-top: 8px;"/></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
