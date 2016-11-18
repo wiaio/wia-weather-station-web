@@ -17,7 +17,7 @@
       Wia.stream.connect({
         onSuccess: function() {
           Wia.sensors.subscribe(
-            { device: "device id"},
+            { device: "Your device Id"},
             function(sensor) {
               if (sensor){
                 document.getElementById("timestamp").innerHTML = Date(sensor.timestamp);
