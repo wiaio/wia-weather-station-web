@@ -10,13 +10,13 @@
   <script src="https://cdn.wia.io/sdk/js/v1/wia.min.js"></script>
   <script>
       Wia.initialize({
-        appKey: "Your application key"
+        appKey: "ak_GpfTgUq2yU9SgaEc4swwu8bKLEvxKpvP"
       });
 
       Wia.stream.connect({
         onSuccess: function() {
           Wia.sensors.subscribe(
-            { device: "Your device Id"},
+            { device: "dev_bx34aVCVBfUKjIsX"},
             function(sensor) {
               if (sensor){
                 document.getElementById("timestamp").innerHTML = Date(sensor.timestamp);
