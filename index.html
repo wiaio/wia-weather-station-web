@@ -10,7 +10,13 @@
   <script src="https://cdn.wia.io/sdk/js/v1/wia.min.js"></script>
   <script>
       Wia.initialize({
-        appKey: "Your application key"
+        appKey: "Your application key",
+        streamApi: {
+          protocol: "wss",
+          host: "websockets.wia.io",
+          port: 443,
+          useSecure: true
+        }
       });
 
       Wia.stream.connect({
